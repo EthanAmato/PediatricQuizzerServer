@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from 'cors'; //data sharing
 import { config } from "dotenv";
-
+import router from "./router/route.js";
 const app = express();
 
 //app middleware
@@ -15,6 +15,8 @@ config();
 const port = process.env.PORT || 8080;
 
 //Create routes
+
+app.use("/api", router) // apis - need to specify api endpoint and then rest of api route 
 
 app.get('/', (req, res) => {
     try {
