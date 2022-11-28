@@ -1,11 +1,23 @@
 //Make all of the API routes for this project
+import { Router } from "express";
 const router = Router();
 
-import { Router } from "express";
+//Import controllers
+import * as controller from '../controllers/controller.js'
 
-router.get('/questions', (req, res) => {
-    res.json("questions api get request")
-})
+//Chain multiple types of requests to a single endpoint without reusing code
+router.route('/questions')
+            .get(controller.getQuestions) //GET request
+            .post(controller.insertQuestions) //POST request
+            .delete(controller.dropQuestions) //DELETE request
+
+
+router.route('/results')
+            .get(controller.getResults)
+            .post(controller.storeResults)
+            .delete(controller.dropResults)
+
+
 
 
 export default router;
